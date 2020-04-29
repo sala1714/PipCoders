@@ -1,4 +1,0 @@
-print("prueba")
-print("prueba2")
-print("prueba4")
-
