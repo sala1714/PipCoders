@@ -1,8 +1,2 @@
-print("Prueba")
-print("prueba1")
-print("prueba3")
-print("prueba4")
-print("una cosa nueva")
-print("prueba4324")
-print()
-print("Prueba Fusión")
+import csv
+
