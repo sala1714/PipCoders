@@ -58,8 +58,9 @@ def final_median_dict(countries, median_countries):
     result = dict()
     for x in list(countries.keys()):
         medianIn = countries[x]["Length"].index(median_countries[x])
-        result[x] = countries[x]["Accession"][medianIn]
-    print(result)
+        result[x] = dict()
+        result[x].update({"Accession":countries[x]["Accession"][medianIn]})
+    print(pd.DataFrame(result).T)
 
 
 main()
