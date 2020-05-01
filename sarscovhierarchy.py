@@ -3,8 +3,8 @@ import pandas as pd
 
 
 def main():
-    with open('sequences.csv', newline='') as csvfile:
-        data = csv.DictReader(csvfile, delimiter=";")
+    with open('sequences_desordenado.csv', newline='') as csvfile:
+        data = csv.DictReader(csvfile, delimiter=",")
         first_row = next(data)
         location = first_row["Geo_Location"]
         countries = dict()
@@ -18,29 +18,24 @@ def main():
         countries[location].update({"Length": list_len})
 
         for row in data:
-            if location in row["Geo_Location"]:
-                list_len.append(int(row["Length"]))
-                list_accession.append(str(row["Accession"]))
-
-                countries[location].update({"Accession": list_accession})
-                countries[location].update({"Length": list_len})
+            pais = row["Geo_Location"].split(":")[0]
+            if pais in list(countries.keys()):
+                countries[pais]["Accession"].append(str(row["Accession"]))
+                countries[pais]["Length"].append(int(row["Length"]))
             else:
-                location = row["Geo_Location"]
-
-                countries[location] = dict()
+                countries[pais] = dict()
                 list_len = list()
                 list_len.append(int(row["Length"]))
                 list_accession = list()
                 list_accession.append(str(row["Accession"]))
 
-                countries[location].update({"Accession": list_accession})
-                countries[location].update({"Length": list_len})
+                countries[pais].update({"Accession": list_accession})
+                countries[pais].update({"Length": list_len})
 
         median_countries = dict()
         for x in list(countries.keys()):
             median_countries[x] = median(sorted(countries[x]["Length"]))
         final_median_dict(countries, median_countries)
-
 
 def median(l):
     if len(l) % 2 == 0:

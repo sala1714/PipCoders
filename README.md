@@ -7,3 +7,4 @@ Proyecto en el cual se va a realizar el árbol genealógico del virus COVID-19, 
 Doble Grado Ingeniería Informática y Administración de Empresas (GEIADE)
 
 Univesitat de Lleida (Udl)
+
