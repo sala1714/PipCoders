@@ -787,8 +787,8 @@ MT114417,29891,Hong Kong
 MT114418,29891,Hong Kong
 MT114419,29863,Hong Kong
 MT230904,29891,Hong Kong
-"MT358401,29895,""USA: New Orleans, LA"""
-"MT358402,29896,""USA: New Orleans, LA"""
+MT358401,29895,USA: New Orleans, LA
+MT358402,29896,USA: New Orleans, LA
 MT358637,29903,India: Rajkot
 MT358644,29842,USA: WA
 MT358645,29831,USA: WA
@@ -1438,7 +1438,7 @@ MT304490,29882,USA: TX
 MT304491,29882,USA: TX
 MT273658,84,Pakistan
 MT281530,29822,Iran
-"MT281577,29903,""China: Anhui, Fuyang"""
+MT281577,29903,China: Anhui, Fuyang
 MT291826,29807,China: Wuhan
 MT291827,29858,China: Wuhan
 MT291828,29858,China: Wuhan
@@ -1662,19 +1662,19 @@ MT263469,29857,USA: WA
 MT256917,29782,Spain: Valencia
 MT256918,29782,Spain: Valencia
 MT256924,29782,Colombia: Antioquia
-"MT258377,29888,""USA: San Francisco, CA"""
-"MT258378,29892,""USA: San Francisco, CA"""
-"MT258379,29892,""USA: San Francisco, CA"""
-"MT258380,29890,""USA: San Francisco, CA"""
-"MT258381,29899,""USA: San Francisco, CA"""
-"MT258382,29885,""USA: San Francisco, CA"""
-"MT258383,29887,""USA: San Francisco, CA"""
-"MT259226,29868,""China: Hubei, Wuhan"""
-"MT259227,29863,""China: Hubei, Wuhan"""
-"MT259228,29861,""China: Hubei, Wuhan"""
-"MT259229,29864,""China: Hubei, Wuhan"""
-"MT259230,29866,""China: Hubei, Wuhan"""
-"MT259231,29865,""China: Hubei, Wuhan"""
+MT258377,29888,USA: San Francisco, CA
+MT258378,29892,USA: San Francisco, CA
+MT258379,29892,USA: San Francisco, CA
+MT258380,29890,USA: San Francisco, CA
+MT258381,29899,USA: San Francisco, CA
+MT258382,29885,USA: San Francisco, CA
+MT258383,29887,USA: San Francisco, CA
+MT259226,29868,China: Hubei, Wuhan
+MT259227,29863,China: Hubei, Wuhan
+MT259228,29861,China: Hubei, Wuhan
+MT259229,29864,China: Hubei, Wuhan
+MT259230,29866,China: Hubei, Wuhan
+MT259231,29865,China: Hubei, Wuhan
 MT259235,29751,USA: WA
 MT259236,29883,USA: WA
 MT259237,29864,USA: WA
@@ -1739,21 +1739,21 @@ MT251977,29829,USA: WA
 MT251978,29905,USA: WA
 MT251979,29839,USA: WA
 MT251980,29845,USA: WA
-"MT253696,29781,""China: Zhejiang, Hangzhou"""
-"MT253697,29781,""China: Zhejiang, Hangzhou"""
-"MT253698,29781,""China: Zhejiang, Hangzhou"""
-"MT253699,29781,""China: Zhejiang, Hangzhou"""
-"MT253700,29781,""China: Zhejiang, Hangzhou"""
-"MT253701,29781,""China: Zhejiang, Hangzhou"""
-"MT253702,29781,""China: Zhejiang, Hangzhou"""
-"MT253703,29781,""China: Zhejiang, Hangzhou"""
-"MT253704,29781,""China: Zhejiang, Hangzhou"""
-"MT253705,29781,""China: Zhejiang, Hangzhou"""
-"MT253706,29781,""China: Zhejiang, Hangzhou"""
-"MT253707,29781,""China: Zhejiang, Hangzhou"""
-"MT253708,29781,""China: Zhejiang, Hangzhou"""
-"MT253709,29781,""China: Zhejiang, Hangzhou"""
-"MT253710,29781,""China: Zhejiang, Hangzhou"""
+MT253696,29781,China: Zhejiang, Hangzhou
+MT253697,29781,China: Zhejiang, Hangzhou
+MT253698,29781,China: Zhejiang, Hangzhou
+MT253699,29781,China: Zhejiang, Hangzhou
+MT253700,29781,China: Zhejiang, Hangzhou
+MT253701,29781,China: Zhejiang, Hangzhou
+MT253702,29781,China: Zhejiang, Hangzhou
+MT253703,29781,China: Zhejiang, Hangzhou
+MT253704,29781,China: Zhejiang, Hangzhou
+MT253705,29781,China: Zhejiang, Hangzhou
+MT253706,29781,China: Zhejiang, Hangzhou
+MT253707,29781,China: Zhejiang, Hangzhou
+MT253708,29781,China: Zhejiang, Hangzhou
+MT253709,29781,China: Zhejiang, Hangzhou
+MT253710,29781,China: Zhejiang, Hangzhou
 MT233526,29847,USA: WA
 MT246449,29828,USA: WA
 MT246450,29872,USA: WA
@@ -1814,7 +1814,7 @@ MT198652,29782,Spain: Valencia
 MT198653,29611,Spain: Valencia
 MT192758,440,Italy: Cagliari
 MT192759,29862,Taiwan
-"MT192765,29829,""USA: CA, San Diego County"""
+MT192765,29829,USA: CA, San Diego County
 MT192772,29891,Viet Nam: Ho Chi Minh city
 MT192773,29890,Viet Nam: Ho Chi Minh city
 MT186676,363,Iran: Tehran
@@ -1871,7 +1871,7 @@ MT161607,253,Italy
 LC529905,29903,Japan
 MT012098,29854,India: Kerala State
 MT050493,29851,India: Kerala State
-"MT152824,29878,""USA: Snohomish County, WA"""
+MT152824,29878,USA: Snohomish County, WA
 MT152900,322,Iran
 MT135041,29903,China: Beijing
 MT135042,29903,China: Beijing
@@ -1882,7 +1882,7 @@ MT127113,615,Viet Nam
 MT127114,1411,Viet Nam
 MT127115,1269,Viet Nam
 MT127116,459,Viet Nam
-"MT123290,29891,""China: Guangdong, Guangzhou"""
+MT123290,29891,China: Guangdong, Guangzhou
 MT123291,29882,China: Guangzhou
 MT123292,29923,China: Guangzhou
 MT123293,29871,China: Guangzhou
@@ -1936,11 +1936,11 @@ LC522350,182,Philippines
 MT027062,29882,USA: CA
 MT027063,29882,USA: CA
 MT027064,29882,USA: CA
-"MT019529,29899,""China: Hubei, Wuhan"""
-"MT019530,29889,""China: Hubei, Wuhan"""
-"MT019531,29899,""China: Hubei, Wuhan"""
-"MT019532,29890,""China: Hubei, Wuhan"""
-"MT019533,29883,""China: Hubei, Wuhan"""
+MT019529,29899,China: Hubei, Wuhan
+MT019530,29889,China: Hubei, Wuhan
+MT019531,29899,China: Hubei, Wuhan
+MT019532,29890,China: Hubei, Wuhan
+MT019533,29883,China: Hubei, Wuhan
 MT020781,29806,Finland
 MT020880,29882,USA: WA
 MT020881,29882,USA: WA
