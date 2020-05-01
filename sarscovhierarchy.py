@@ -5,19 +5,45 @@ def main():
         data = csv.DictReader(csvfile, delimiter=";")
         first_row = next(data)
         location = first_row["Geo_Location"]
-        countries = {}
-        countries[location] = list()
-        countries[location].append(int(first_row["Length"]))
+        countries = dict()
+        countries[location] = dict()
+        list_len = list()
+        list_len.append(int(first_row["Length"]))
+        list_accession = list()
+        list_accession.append(str(first_row["Accession"]))
+
+        countries[location].update({"Accession":list_accession})
+        countries[location].update({"Length":list_len})
+
         for row in data:
             if location in row["Geo_Location"]:
-                countries[location].append(int(row["Length"]))
+                list_len.append(int(row["Length"]))
+                list_accession.append(str(row["Accession"]))
+
+                countries[location].update({"Accession": list_accession})
+                countries[location].update({"Length": list_len})
             else:
                 location = row["Geo_Location"]
-                countries[location] = list()
-                countries[location].append(int(row["Length"]))
-        median_countries = {}
+
+                countries[location] = dict()
+                list_len = list()
+                list_len.append(int(row["Length"]))
+                list_accession = list()
+                list_accession.append(str(row["Accession"]))
+
+                countries[location].update({"Accession": list_accession})
+                countries[location].update({"Length": list_len})
+
+        print(countries)
+        median_countries = dict()
         for x in list(countries.keys()):
-            median_countries[x] = median(sorted(countries[x]))
+            median_countries[x] = median(sorted(countries[x]["Length"]))
+
+        for x in list(countries.keys()):
+            if median_countries[x] not in countries[x]["Length"]:
+                print(x)
+                print(median_countries[x])
+
 def median(l):
     if len(l) % 2 == 0:
         n = len(l)
