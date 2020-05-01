@@ -5,17 +5,11 @@ import pandas as pd
 def main():
     with open('sequences_desordenado.csv', newline='') as csvfile:
         data = csv.DictReader(csvfile, delimiter=",")
-        first_row = next(data)
-        location = first_row["Geo_Location"]
+        row = next(data)
         countries = dict()
-        countries[location] = dict()
-        list_len = list()
-        list_len.append(int(first_row["Length"]))
-        list_accession = list()
-        list_accession.append(str(first_row["Accession"]))
-
-        countries[location].update({"Accession": list_accession})
-        countries[location].update({"Length": list_len})
+        countries[row["Geo_Location"]] = dict()
+        countries[row["Geo_Location"]]["Length"] = [int(row["Length"])]
+        countries[row["Geo_Location"]]["Accession"] = [str(row["Accession"])]
 
         for row in data:
             pais = row["Geo_Location"].split(":")[0]
@@ -24,27 +18,21 @@ def main():
                 countries[pais]["Length"].append(int(row["Length"]))
             else:
                 countries[pais] = dict()
-                list_len = list()
-                list_len.append(int(row["Length"]))
-                list_accession = list()
-                list_accession.append(str(row["Accession"]))
-
-                countries[pais].update({"Accession": list_accession})
-                countries[pais].update({"Length": list_len})
+                countries[pais]["Length"] = [int(row["Length"])]
+                countries[pais]["Accession"] = [str(row["Accession"])]
 
         median_countries = dict()
         for x in list(countries.keys()):
-            median_countries[x] = median(countries[x]["Length"])
+            median_countries[x] = median(sorted(countries[x]["Length"]))
         final_median_dict(countries, median_countries)
 
 
 def median(l):
-    sort(l)
     return l[len(l) // 2]
 
 
-def sort(array):
-    """Sort the array by using quicksort."""
+def sort(l):
+    """Sort the array by using quicksort.
 
     less = []
     equal = []
@@ -63,7 +51,7 @@ def sort(array):
         return sort(less)+equal+sort(greater)  # Just use the + operator to join lists
     # Note that you want equal ^^^^^ not pivot
     else:  # You need to handle the part at the end of the recursion - when you only have one element in your array, just return the array.
-        return array
+        return array"""
 
 
 def final_median_dict(countries, median_countries):
