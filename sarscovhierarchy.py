@@ -37,16 +37,9 @@ def main():
             median_countries[x] = median(sorted(countries[x]["Length"]))
         final_median_dict(countries, median_countries)
 
+
 def median(l):
-    if len(l) % 2 == 0:
-        n = len(l)
-        mediana = (l[n // 2 - 1] + l[n // 2]) // 2
-        if l[n // 2] - mediana < mediana - l[n // 2 - 1]:
-            return l[n // 2]
-        else:
-            return l[n // 2 - 1]
-    else:
-        return l[len(l) // 2]
+    return l[len(l) // 2]
 
 
 def final_median_dict(countries, median_countries):
@@ -54,7 +47,7 @@ def final_median_dict(countries, median_countries):
     for x in list(countries.keys()):
         medianIn = countries[x]["Length"].index(median_countries[x])
         result[x] = dict()
-        result[x].update({"Accession":countries[x]["Accession"][medianIn]})
+        result[x].update({"Accession": countries[x]["Accession"][medianIn]})
     print(pd.DataFrame(result).T)
 
 
