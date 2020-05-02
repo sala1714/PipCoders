@@ -12,14 +12,14 @@ def main():
         countries[row["Geo_Location"]]["Accession"] = [str(row["Accession"])]
 
         for row in data:
-            pais = row["Geo_Location"].split(":")[0]
-            if pais in list(countries.keys()):
-                countries[pais]["Accession"].append(str(row["Accession"]))
-                countries[pais]["Length"].append(int(row["Length"]))
+            location = row["Geo_Location"].split(":")[0]
+            if location in list(countries.keys()):
+                countries[location]["Accession"].append(str(row["Accession"]))
+                countries[location]["Length"].append(int(row["Length"]))
             else:
-                countries[pais] = dict()
-                countries[pais]["Length"] = [int(row["Length"])]
-                countries[pais]["Accession"] = [str(row["Accession"])]
+                countries[location] = dict()
+                countries[location]["Length"] = [int(row["Length"])]
+                countries[location]["Accession"] = [str(row["Accession"])]
 
         median_countries = dict()
         for x in list(countries.keys()):
