@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def main():
-    with open('sequences_desordenado.csv', newline='') as csvfile:
+    with open('sequences.csv', newline='') as csvfile:
         data = csv.DictReader(csvfile, delimiter=",")
         row = next(data)
         countries = dict()
