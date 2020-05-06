@@ -5,17 +5,17 @@ from Bio import SeqIO
 
 
 def main():
-    fasta_RNA(select_accessions())
+    dictionary_median_accessions = select_accessions() #First the program obtains the median sample for each country.
+    fasta_RNA(dictionary_median_accessions) #In second place, the program associates the RNA sequence with the sample.
 
 
 '''def muestras(dict):
     for country in list(dict.keys()):
         print(dict[country]["Accession"])'''
 
-
 def fasta_RNA(dict):
     for sequence in SeqIO.parse("sequences.fasta", "fasta"):
-        dict[country_of(sequence.id, dict)].update({"RNA": str(sequence.seq)})
+        dict[country_of(sequence.id, dict)].update({"RNA": str(sequence.seq)[0:1000]})
     print(pd.DataFrame(dict).T)
 
 
