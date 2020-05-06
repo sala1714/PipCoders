@@ -43,7 +43,6 @@ def select_accessions():
             median_countries[x] = median(countries[x]["Length"])
         return final_median_dict(countries, median_countries)
 
-
 def median(list):
     list = sort(list)
     return list[len(list) // 2]
