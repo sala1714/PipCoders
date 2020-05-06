@@ -5,10 +5,18 @@ from Bio import SeqIO
 
 
 def main():
-    median_dict = select_accessions()
-    for seq_record in SeqIO.parse("sequences.fasta", "fasta"):
-        print(seq_record.id)
-        print(seq_record.seq)
+    fasta_RNA(select_accessions())
+
+
+'''def muestras(dict):
+    for country in list(dict.keys()):
+        print(dict[country]["Accession"])'''
+
+
+def fasta_RNA(dict):
+    for sequence in SeqIO.parse("sequences.fasta", "fasta"):
+        dict[country_of(sequence.id, dict)].update({"RNA": str(sequence.seq)})
+    print(pd.DataFrame(dict).T)
 
 
 def select_accessions():
@@ -70,7 +78,6 @@ def final_median_dict(countries, median_countries):
         medianIn = countries[x]["Length"].index(median_countries[x])
         result[x] = dict()
         result[x].update({"Accession": countries[x]["Accession"][medianIn]})
-    print(pd.DataFrame(result).T)
     return result
 
 
