@@ -1,9 +1,17 @@
 import csv
 import random
 import pandas as pd
+from Bio import SeqIO
 
 
 def main():
+    median_dict = select_accessions()
+    for seq_record in SeqIO.parse("sequences.fasta", "fasta"):
+        print(seq_record.id)
+        print(seq_record.seq)
+
+
+def select_accessions():
     with open('sequences.csv', newline='') as csvfile:
         data = csv.DictReader(csvfile, delimiter=",")
         row = next(data)
@@ -25,7 +33,7 @@ def main():
         median_countries = dict()
         for x in list(countries.keys()):
             median_countries[x] = median(countries[x]["Length"])
-        final_median_dict(countries, median_countries)
+        return final_median_dict(countries, median_countries)
 
 
 def median(list):
@@ -63,6 +71,13 @@ def final_median_dict(countries, median_countries):
         result[x] = dict()
         result[x].update({"Accession": countries[x]["Accession"][medianIn]})
     print(pd.DataFrame(result).T)
+    return result
+
+
+def country_of(accession, dictionary):
+    for country in list(dictionary.keys()):
+        if accession in dictionary[country]["Accession"]:
+            return country
 
 
 main()
