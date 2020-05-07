@@ -3,42 +3,13 @@ import random
 import pandas as pd
 from Bio import SeqIO
 import urllib.request
+import glob
 
 
 def main():
     dictionary_median_accessions = select_accessions()  # First the program obtains the median sample for each country.
     fasta_RNA(dictionary_median_accessions)  # In second place, the program associates the RNA sequence with the sample.
-    createDiccinary(dictionary_median_accessions)
-    download_FASTA(dictionary_median_accessions)
-    muestras(dictionary_median_accessions)
-
-
-def muestras(dict):
-    for country in list(dict.keys()):
-        print(dict[country]["Accession"])
-
-
-def download_FASTA(dictionary):
-    for country in list(dictionary.keys()):
-        accession = dictionary[country]['Accession']
-        url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
-        urllib.request.urlretrieve(url, './FASTA_files/' + accession + '.fasta')
-
-
-def createDiccinary(dictionary):
-    result = dict()
-    countries = list(dictionary.keys())
-    for country in countries:
-        result[country] = dict()
-        for country2 in countries:
-            result[country].update({country2: ""})
-    print(pd.DataFrame(result).T)
-
-
-def fasta_RNA(dict):
-    for sequence in SeqIO.parse("sequences.fasta", "fasta"):
-        dict[country_of(sequence.id, dict)].update({"RNA": str(sequence.seq)[0:1000]})
-    # print(pd.DataFrame(dict).T)
+    # createDictionary(dictionary_median_accessions)
 
 
 def select_accessions():
@@ -66,19 +37,19 @@ def select_accessions():
         return final_median_dict(countries, median_countries)
 
 
-def median(list):
-    list = sort(list)
-    return list[len(list) // 2]
+def median(values):
+    values = sort(values)
+    return values[len(values) // 2]
 
 
-def sort(list):
+def sort(values):
     less = []
     equal = []
     greater = []
 
-    if len(list) > 1:
-        pivot = random.choice(list)
-        for x in list:
+    if len(values) > 1:
+        pivot = random.choice(values)
+        for x in values:
             if x < pivot:
                 less.append(x)
             elif x == pivot:
@@ -87,7 +58,7 @@ def sort(list):
                 greater.append(x)
         return sort(less) + equal + sort(greater)
     else:
-        return list
+        return values
 
 
 # This function, once we get the median value of each country, it creates a dictionary that contains all the medians'
@@ -103,10 +74,33 @@ def final_median_dict(countries, median_countries):
     return result
 
 
-def country_of(accession, dictionary):
+def fasta_RNA(dictionary):
     for country in list(dictionary.keys()):
-        if accession in dictionary[country]["Accession"]:
-            return country
+        path = glob.glob("./FASTA_files/" + dictionary[country]["Accession"] + ".fasta", recursive=False)
+        if not path:
+            path = download_FASTA(dictionary[country]["Accession"])
+        else:
+            path = str(path[0])
+        for file in SeqIO.parse(path, "fasta"):
+            dictionary[country].update({"RNA": str(file.seq)[0:1000]})
+    print(pd.DataFrame(dictionary).T)
+
+
+def download_FASTA(accession):
+    url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
+    path = './FASTA_files/' + accession + '.fasta'
+    urllib.request.urlretrieve(url, path)
+    return path
+
+
+def createDictionary(dictionary):
+    result = dict()
+    countries = list(dictionary.keys())
+    for country in countries:
+        result[country] = dict()
+        for country2 in countries:
+            result[country].update({country2: ""})
+    print(pd.DataFrame(result).T)
 
 
 main()
