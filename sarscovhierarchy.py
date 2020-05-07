@@ -2,16 +2,31 @@ import csv
 import random
 import pandas as pd
 from Bio import SeqIO
+import urllib.request
 
 
 def main():
-    dictionary_median_accessions = select_accessions() #First the program obtains the median sample for each country.
-    fasta_RNA(dictionary_median_accessions) #In second place, the program associates the RNA sequence with the sample.
+    dictionary_median_accessions = select_accessions()  # First the program obtains the median sample for each country.
+    fasta_RNA(dictionary_median_accessions)  # In second place, the program associates the RNA sequence with the sample.
     createDiccinary(dictionary_median_accessions)
+    download_FASTA(dictionary_median_accessions)
+    muestras(dictionary_median_accessions)
 
-'''def muestras(dict):
+
+def muestras(dict):
     for country in list(dict.keys()):
-        print(dict[country]["Accession"])'''
+        print(dict[country]["Accession"])
+
+
+def download_FASTA(dictionary):
+    with open('sequences2.fasta', 'wb') as archivo:
+        for country in list(dictionary.keys()):
+            accession = dictionary[country]['Accession']
+            url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
+            tmp, response = urllib.request.urlretrieve(url)
+            with open(tmp, 'rb') as tmp:
+                archivo.write(tmp.read())
+
 
 def createDiccinary(dictionary):
     result = dict()
@@ -19,13 +34,14 @@ def createDiccinary(dictionary):
     for country in countries:
         result[country] = dict()
         for country2 in countries:
-            result[country].update({country2:""})
+            result[country].update({country2: ""})
     print(pd.DataFrame(result).T)
+
 
 def fasta_RNA(dict):
     for sequence in SeqIO.parse("sequences.fasta", "fasta"):
         dict[country_of(sequence.id, dict)].update({"RNA": str(sequence.seq)[0:1000]})
-    #print(pd.DataFrame(dict).T)
+    # print(pd.DataFrame(dict).T)
 
 
 def select_accessions():
@@ -51,6 +67,7 @@ def select_accessions():
         for x in list(countries.keys()):
             median_countries[x] = median(countries[x]["Length"])
         return final_median_dict(countries, median_countries)
+
 
 def median(list):
     list = sort(list)
