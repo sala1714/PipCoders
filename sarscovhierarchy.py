@@ -19,13 +19,10 @@ def muestras(dict):
 
 
 def download_FASTA(dictionary):
-    with open('sequences2.fasta', 'wb') as archivo:
-        for country in list(dictionary.keys()):
-            accession = dictionary[country]['Accession']
-            url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
-            tmp, response = urllib.request.urlretrieve(url)
-            with open(tmp, 'rb') as tmp:
-                archivo.write(tmp.read())
+    for country in list(dictionary.keys()):
+        accession = dictionary[country]['Accession']
+        url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
+        urllib.request.urlretrieve(url, './FASTA_files/' + accession + '.fasta')
 
 
 def createDiccinary(dictionary):
