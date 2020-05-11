@@ -9,7 +9,8 @@ import glob
 def main():
     dictionary_median_accessions = select_accessions()  # First the program obtains the median sample for each country.
     dictionary_with_fasta = fasta_RNA(dictionary_median_accessions)  # In second place, the program associates the RNA sequence with the sample.
-    createDictionary(dictionary_with_fasta)
+    # createDictionary(dictionary_with_fasta)
+    load_aligments(list(dictionary_with_fasta.keys()))
 
 
 def select_accessions():
@@ -85,7 +86,6 @@ def fasta_RNA(dictionary):
             dictionary[country].update({"RNA": str(file.seq)[0:1000]})
     return dictionary
 
-
 def download_FASTA(accession):
     url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
     path = './FASTA_files/' + accession + '.fasta'
@@ -105,6 +105,17 @@ def createDictionary(dictionary):
             result[country].update({country2: maximum_score(S, A, B)})
     pd.DataFrame(dictionary).to_csv('out.csv', index=False)
 
+def load_aligments(country_list):
+    with open('aligment.csv', newline='') as csvfile:
+        data = csv.DictReader(csvfile, delimiter=",")
+        result = dict()
+        i = 0
+        for row in data:
+            result[country_list[i]] = dict()
+            for country2 in country_list:
+                result[country_list[i]].update({country2: row[country2]})
+            i+=1
+    print(pd.DataFrame(result).T)
 
 def similarity_matrix():
     matrix = dict()
