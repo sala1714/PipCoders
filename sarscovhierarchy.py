@@ -8,11 +8,11 @@ import matplotlib.pyplot as plot
 
 
 def main():
-    dictionary_median_accessions = select_accessions()  # First the program obtains the median sample for each country.
-    dictionary_with_fasta = fasta_RNA(
-        dictionary_median_accessions)  # In second place, the program associates the RNA sequence with the sample.
+    print(pd.DataFrame(select_accessions()).T)  # First the program obtains the median sample for each country.
+    # dictionary_with_fasta = fasta_RNA(
+    # dictionary_median_accessions)   In second place, the program associates the RNA sequence with the sample.
     # createDictionary(dictionary_with_fasta)
-    distances(load_aligments(list(dictionary_with_fasta.keys())))
+    # distances(load_aligments(list(dictionary_with_fasta.keys())))
 
 
 def select_accessions():
@@ -36,32 +36,27 @@ def select_accessions():
 
         median_countries = dict()
         for x in list(countries.keys()):
-            median_countries[x] = median(countries[x]["Length"])
+            median_countries[x] = median(countries[x]["Length"], len(countries[x]["Length"]) // 2)
         return final_median_dict(countries, median_countries)
 
 
-def median(values):
-    values = sort(values)
-    return values[len(values) // 2]
+def median(values, n):
+    pivot = values[0]
+    below = [x for x in values if x < pivot]
+    above = [x for x in values if x > pivot]
 
+    num_less = len(below)
+    num_lessoreq = len(values) - len(above)
 
-def sort(values):
-    less = []
-    equal = []
-    greater = []
-
-    if len(values) > 1:
-        pivot = random.choice(values)
-        for x in values:
-            if x < pivot:
-                less.append(x)
-            elif x == pivot:
-                equal.append(x)
-            elif x > pivot:
-                greater.append(x)
-        return sort(less) + equal + sort(greater)
+    if n < num_less:
+        return median(below, n)
+    elif n >= num_lessoreq:
+        return median(above, n - num_lessoreq)
     else:
-        return values
+        return pivot
+
+
+arr = random.sample(range(10), 10)
 
 
 # This function, once we get the median value of each country, it creates a dictionary that contains all the medians'
