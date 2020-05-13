@@ -4,13 +4,15 @@ import pandas as pd
 from Bio import SeqIO
 import urllib.request
 import glob
+import matplotlib.pyplot as plot
 
 
 def main():
     dictionary_median_accessions = select_accessions()  # First the program obtains the median sample for each country.
-    dictionary_with_fasta = fasta_RNA(dictionary_median_accessions)  # In second place, the program associates the RNA sequence with the sample.
+    dictionary_with_fasta = fasta_RNA(
+        dictionary_median_accessions)  # In second place, the program associates the RNA sequence with the sample.
     # createDictionary(dictionary_with_fasta)
-    load_aligments(list(dictionary_with_fasta.keys()))
+    distances(load_aligments(list(dictionary_with_fasta.keys())))
 
 
 def select_accessions():
@@ -86,6 +88,7 @@ def fasta_RNA(dictionary):
             dictionary[country].update({"RNA": str(file.seq)[0:1000]})
     return dictionary
 
+
 def download_FASTA(accession):
     url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
     path = './FASTA_files/' + accession + '.fasta'
@@ -103,7 +106,8 @@ def createDictionary(dictionary):
         for country2 in countries:
             B = dictionary[country2]["RNA"]
             result[country].update({country2: maximum_score(S, A, B)})
-    pd.DataFrame(dictionary).to_csv('out.csv', index=False)
+    return result
+
 
 def load_aligments(country_list):
     with open('aligment.csv', newline='') as csvfile:
@@ -114,8 +118,9 @@ def load_aligments(country_list):
             result[country_list[i]] = dict()
             for country2 in country_list:
                 result[country_list[i]].update({country2: row[country2]})
-            i+=1
-    print(pd.DataFrame(result).T)
+            i += 1
+    return result
+
 
 def similarity_matrix():
     matrix = dict()
@@ -168,6 +173,16 @@ def maximum_score(S, A, B):
             insert = F[i][j - 1] + d
             F[i][j] = max(delete, insert, match)
     return F[-1][-1]
+
+
+def distances(dictionary):
+    result = dict()
+    for i in list(dictionary.keys()):
+        result[i] = dict()
+        valor = dictionary[i][i]
+        for j in list(dictionary.keys()):
+            result[i].update({j: abs(int(valor) - int(dictionary[i][j]))})
+    pd.DataFrame(result).to_csv('out.csv', index=False)
 
 
 main()
