@@ -3,7 +3,7 @@ import csv
 
 # Dado un csv se selecciona la muestra accesion median para cada pais.
 def select_accessions():
-    with open('sequences.csv', newline='') as csvfile:
+    with open('data/sequences.csv', newline='') as csvfile:
         data = csv.DictReader(csvfile, delimiter=",")
         row = next(data)
         countries = dict()

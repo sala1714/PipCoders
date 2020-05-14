@@ -8,7 +8,7 @@ import random
 
 def fasta_RNA(dictionary):
     for country in list(dictionary.keys()):
-        path = glob.glob("./FASTA_files/" + dictionary[country]["Accession"] + ".fasta", recursive=False)
+        path = glob.glob("./data/FASTA_files/" + dictionary[country]["Accession"] + ".fasta", recursive=False)
         if not path:
             path = download_FASTA(dictionary[country]["Accession"])
         else:
@@ -21,7 +21,7 @@ def fasta_RNA(dictionary):
 
 def download_FASTA(accession):
     url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
-    path = './FASTA_files/' + accession + '.fasta'
+    path = './data/FASTA_files/' + accession + '.fasta'
     urllib.request.urlretrieve(url, path)
     return path
 
@@ -96,7 +96,7 @@ def maximum_score(S, A, B):
 #Debido al tiempo que se tarda en comparar dos secuencias fasta, esta función se utiliza para cargar un csv con los resultados de una ejecución anterior.
 
 def load_aligments(country_list):
-    with open('aligment.csv', newline='') as csvfile:
+    with open('data/aligment.csv', newline='') as csvfile:
         data = csv.DictReader(csvfile, delimiter=",")
         result = dict()
         i = 0
