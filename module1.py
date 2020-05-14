@@ -1,7 +1,6 @@
 import csv
 
 
-# Dado un csv se selecciona la muestra accesion median para cada pais.
 def select_accessions():
     with open('data/sequences.csv', newline='') as csvfile:
         data = csv.DictReader(csvfile, delimiter=",")
@@ -23,11 +22,10 @@ def select_accessions():
 
         median_countries = dict()
         for x in list(countries.keys()):
-            median_countries[x] = median(countries[x]["Length"], len(countries[x]["Length"])//2)
+            median_countries[x] = median(countries[x]["Length"], len(countries[x]["Length"]) // 2)
         return final_median_dict(countries, median_countries)
 
 
-# Devuleve el valor mediano de una lista de valores
 def median(values, n):
     pivot = values[0]
     below = [x for x in values if x < pivot]

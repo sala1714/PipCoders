@@ -1,10 +1,10 @@
+import csv
+import random
+import pandas as pd
 from Bio import SeqIO
 import urllib.request
 import glob
-import csv
-import random
 
-#Obetnemos un diccionario con las secuencias fasta correspondiente a las accesion del diccionario de entrada
 
 def fasta_RNA(dictionary):
     for country in list(dictionary.keys()):
@@ -17,7 +17,6 @@ def fasta_RNA(dictionary):
             dictionary[country].update({"RNA": str(file.seq)[0:1000]})
     return dictionary
 
-# Función para descargar una secuencia fasta disponiendo del accesion
 
 def download_FASTA(accession):
     url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
@@ -25,7 +24,6 @@ def download_FASTA(accession):
     urllib.request.urlretrieve(url, path)
     return path
 
-#Crea un diccionario que acontiene los valores del aligment entre paises
 
 def createDictionary(dictionary):
     result = dict()
@@ -37,6 +35,19 @@ def createDictionary(dictionary):
         for country2 in countries:
             B = dictionary[country2]["RNA"]
             result[country].update({country2: maximum_score(S, A, B)})
+    return result
+
+
+def load_aligments(country_list):
+    with open('aligment.csv', newline='') as csvfile:
+        data = csv.DictReader(csvfile, delimiter=",")
+        result = dict()
+        i = 0
+        for row in data:
+            result[country_list[i]] = dict()
+            for country2 in country_list:
+                result[country_list[i]].update({country2: row[country2]})
+            i += 1
     return result
 
 
@@ -63,7 +74,6 @@ def similarity_matrix():
     matrix["T"].update({"T": 8})
     return matrix
 
-#Calcula el aligment entre los paises
 
 def maximum_score(S, A, B):
     d = -5
@@ -93,7 +103,8 @@ def maximum_score(S, A, B):
             F[i][j] = max(delete, insert, match)
     return F[-1][-1]
 
-#Debido al tiempo que se tarda en comparar dos secuencias fasta, esta función se utiliza para cargar un csv con los resultados de una ejecución anterior.
+
+# Debido al tiempo que se tarda en comparar dos secuencias fasta, esta función se utiliza para cargar un csv con los resultados de una ejecución anterior.
 
 def load_aligments(country_list):
     with open('data/aligment.csv', newline='') as csvfile:
@@ -107,13 +118,18 @@ def load_aligments(country_list):
             i += 1
     return result
 
+
 # Devuelve un diccionario con el valor de la distancia de todos los paises con respecto a la muestra del pais
 
 def distances(dictionary):
     result = dict()
     for i in list(dictionary.keys()):
         result[i] = dict()
+    for i in list(dictionary.keys()):
         valor = dictionary[i][i]
-        for j in list(dictionary.keys()):
-            result[i].update({j: abs(int(valor) - int(dictionary[i][j]))})
-    return result
+        lista = list(dictionary.keys())
+        for j in lista[lista.index(i):]:
+            result[i].update({j: int(valor) - int(dictionary[i][j])})
+            result[j].update({i: int(valor) - int(dictionary[j][i])})
+
+    pd.DataFrame(result).to_csv('data/out.csv', index=False)
