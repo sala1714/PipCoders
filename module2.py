@@ -1,10 +1,10 @@
 import csv
-import random
 import pandas as pd
 from Bio import SeqIO
 import urllib.request
 import glob
 import needleman_wunsch as nw
+
 
 def fasta_RNA(dictionary):
     for country in list(dictionary.keys()):
@@ -83,7 +83,7 @@ def maximum_score(A, B):
 
 # Debido al tiempo que se tarda en comparar dos secuencias fasta, esta función se utiliza para cargar un csv con los resultados de una ejecución anterior.
 
-def load_aligments(country_list):
+def load_aligments_local(country_list):
     with open('data/aligment.csv', newline='') as csvfile:
         data = csv.DictReader(csvfile, delimiter=",")
         result = dict()
