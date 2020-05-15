@@ -4,7 +4,7 @@ import pandas as pd
 from Bio import SeqIO
 import urllib.request
 import glob
-
+import needleman_wunsch as nw
 
 def fasta_RNA(dictionary):
     for country in list(dictionary.keys()):
@@ -27,14 +27,15 @@ def download_FASTA(accession):
 
 def createDictionary(dictionary):
     result = dict()
-    S = similarity_matrix()
     countries = list(dictionary.keys())
     for country in countries:
         result[country] = dict()
         A = dictionary[country]["RNA"]
         for country2 in countries:
             B = dictionary[country2]["RNA"]
-            result[country].update({country2: maximum_score(S, A, B)})
+            print(country)
+            print(country2)
+            result[country].update({country2: nw.maximum_score(A, B)})
     return result
 
 
@@ -51,32 +52,8 @@ def load_aligments(country_list):
     return result
 
 
-def similarity_matrix():
-    matrix = dict()
-    for i in ["A", "G", "C", "T"]:
-        matrix[i] = dict()
-
-    matrix["A"].update({"A": 10})
-    matrix["A"].update({"G": -1})
-    matrix["A"].update({"C": -3})
-    matrix["A"].update({"T": -4})
-    matrix["G"].update({"A": -1})
-    matrix["G"].update({"G": 7})
-    matrix["G"].update({"C": -5})
-    matrix["G"].update({"T": -3})
-    matrix["C"].update({"A": -3})
-    matrix["C"].update({"G": -5})
-    matrix["C"].update({"C": 9})
-    matrix["C"].update({"T": 0})
-    matrix["T"].update({"A": -4})
-    matrix["T"].update({"G": -3})
-    matrix["T"].update({"C": 0})
-    matrix["T"].update({"T": 8})
-    return matrix
-
-
-def maximum_score(S, A, B):
-    d = -5
+def maximum_score(A, B):
+    d = -1
     F = [[0 for x in range(len(A) + 1)] for y in range(len(B) + 1)]
     for i in range(len(B) + 1):
         F[i][0] = i * d
@@ -84,20 +61,20 @@ def maximum_score(S, A, B):
         F[0][j] = j * d
     for i in range(1, (len(B) + 1)):
         for j in range(1, (len(A) + 1)):
-            if A[j - 1] == "N" and B[j - 1] == "N":
-                match = F[i - 1][j - 1] + S[random.choice(list(S.keys()))][random.choice(list(S.keys()))]
-            elif A[j - 1] == "N":
-                match = F[i - 1][j - 1] + S[random.choice(list(S.keys()))][B[i - 1]]
-            elif B[i - 1] == "N":
-                match = F[i - 1][j - 1] + S[A[j - 1]][random.choice(list(S.keys()))]
-            elif A[j - 1] == "K" and B[j - 1] == "K":
-                match = F[i - 1][j - 1] + S[random.choice(["G", "C"])][random.choice(["G", "C"])]
-            elif A[j - 1] == "K":
-                match = F[i - 1][j - 1] + S[random.choice(["G", "C"])][B[i - 1]]
-            elif B[i - 1] == "K":
-                match = F[i - 1][j - 1] + S[A[j - 1]][random.choice(["G", "C"])]
+            a_char = A[j - 1]
+            if a_char == "N":
+                a_char = "A"
+            if a_char == "K":
+                a_char = "G"
+            b_char = B[i - 1]
+            if b_char == "N":
+                b_char = "A"
+            if b_char == "K":
+                b_char = "G"
+            if a_char == b_char:
+                match = F[i - 1][j - 1] + 1
             else:
-                match = F[i - 1][j - 1] + S[A[j - 1]][B[i - 1]]
+                match = F[i - 1][j - 1] - 1
             delete = F[i - 1][j] + d
             insert = F[i][j - 1] + d
             F[i][j] = max(delete, insert, match)
