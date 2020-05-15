@@ -1,7 +1,13 @@
+"""
+    csv: Biblioteca usada para la carga de datos desde archivos csv.
+    urllib: Biblioteca usada para descargar los archivos FASTA desde la web.
+    glob: Biblioteca usada para listar el directorio de archivos FASTA.
+    Bio: Biblioteca usada para localizar el RNA de la muestra dentro de un archivo FASTA.
+    needleman_wunsch: El algoritmo para calcular los aligment en lenguajes RUST.
+"""
 import csv
 import urllib.request
 import glob
-import pandas as pd
 from Bio import SeqIO
 import needleman_wunsch as nw
 
@@ -135,5 +141,4 @@ def distances(dictionary):
         for j in lista[lista.index(i):]:
             result[i].update({j: int(valor) - int(dictionary[i][j])})
             result[j].update({i: int(valor) - int(dictionary[j][i])})
-    pd.DataFrame(result).to_csv('data/out.csv', index=False)
     return result

@@ -1,3 +1,6 @@
+"""
+    csv: Biblioteca usada para la carga de datos desde archivos csv.
+"""
 import csv
 
 
