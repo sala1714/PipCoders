@@ -57,62 +57,32 @@ def create_dictionary(dictionary):
     countries = list(dictionary.keys())
     for country in countries:
         result[country] = dict()
+    for country in countries:
         country_a = dictionary[country]["RNA"]
-        for country2 in countries:
+        for country2 in countries[countries.index(country):]:
             country_b = dictionary[country2]["RNA"]
             print(country)
             print(country2)
-            result[country].update({country2: nw.maximum_score(country_a, country_b)})
+            if country != country2:
+                score = nw.maximum_score(country_a, country_b)
+                result[country].update({country2: score})
+                result[country2].update({country: score})
+
+            else:
+                result[country].update({country2: len(country_a)})
+
     return result
 
 
-def maximum_score(country_a, country_b):
+def load_alignments(country_list):
     """
-        Compara la distancia entre dos muestras.
-
-        :param country_a: Primer país de la comparación.
-        :type country_a: str
-        :param country_b: Segundo país de la comparación.
-        :type country_b: str
-        :return: Valor de la distancia de las muestras entre country_a y conuntry_b.
-    """
-    base_d = -1
-    matrix_f = [[0 for x in range(len(country_a) + 1)] for y in range(len(country_b) + 1)]
-    for i in range(len(country_b) + 1):
-        matrix_f[i][0] = i * base_d
-    for j in range(len(country_a) + 1):
-        matrix_f[0][j] = j * base_d
-    for i in range(1, (len(country_b) + 1)):
-        for j in range(1, (len(country_a) + 1)):
-            a_char = country_a[j - 1]
-            if a_char == "N":
-                a_char = "A"
-            if a_char == "K":
-                a_char = "G"
-            b_char = country_b[i - 1]
-            if b_char == "N":
-                b_char = "A"
-            if b_char == "K":
-                b_char = "G"
-            if a_char == b_char:
-                match = matrix_f[i - 1][j - 1] + 1
-            else:
-                match = matrix_f[i - 1][j - 1] - 1
-            delete = matrix_f[i - 1][j] + base_d
-            insert = matrix_f[i][j - 1] + base_d
-            matrix_f[i][j] = max(delete, insert, match)
-    return matrix_f[-1][-1]
-
-
-def load_aligments(country_list):
-    """
-        Crea un diccionario con los datos de aligmentes desde un csv.
+        Crea un diccionario con los datos de alignments desde un csv.
 
         :param country_list: Lista de países presentes en el diccionario result.
         :type country_list: list
         :return: Diccionario con las datos del csv.
     """
-    with open('data/aligment.csv', newline='') as csvfile:
+    with open('data/alignments.csv', newline='') as csvfile:
         data = csv.DictReader(csvfile, delimiter=",")
         result = dict()
         i = 0
