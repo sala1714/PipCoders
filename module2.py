@@ -27,7 +27,7 @@ def fasta_rna(dictionary):
         else:
             path = str(path[0])
         for file in SeqIO.parse(path, "fasta"):
-            dictionary[country].update({"RNA": str(file.seq)[0:1000]})
+            dictionary[country].update({"RNA": str(file.seq)[0:100]})
     return dictionary
 
 
@@ -62,7 +62,7 @@ def create_dictionary(dictionary):
             country_b = dictionary[country2]["RNA"]
             print(country)
             print(country2)
-            result[country].update({country2: nw.maximum_score(country_a, country_b)})
+            result[country].update({country2: maximum_score(country_a, country_b)})
     return result
 
 
