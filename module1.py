@@ -53,10 +53,9 @@ def median(values, middle_position):
 
     if middle_position < num_less:
         return median(below, middle_position)
-    elif middle_position >= num_less_or_eq:
+    if middle_position >= num_less_or_eq:
         return median(above, middle_position - num_less_or_eq)
-    else:
-        return pivot
+    return pivot
 
 
 def final_median_dict(countries, median_countries):

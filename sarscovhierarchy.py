@@ -8,7 +8,6 @@ import pandas as pd
 import module1 as m1
 import module2 as m2
 
-
 # First the program obtains the median sample for each country.
 dictionary_median_accessions = m1.select_accessions()
 # In second place, the program associates the RNA

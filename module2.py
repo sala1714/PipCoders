@@ -61,8 +61,6 @@ def create_dictionary(dictionary):
         country_a = dictionary[country]["RNA"]
         for country2 in countries[countries.index(country):]:
             country_b = dictionary[country2]["RNA"]
-            print(country)
-            print(country2)
             if country != country2:
                 score = nw.maximum_score(country_a, country_b)
                 result[country].update({country2: score})
@@ -70,7 +68,6 @@ def create_dictionary(dictionary):
 
             else:
                 result[country].update({country2: len(country_a)})
-
     return result
 
 
