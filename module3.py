@@ -1,16 +1,29 @@
+"""
+    random: Se utiliza para calcular los primeros centros de manera aleatoria.
+"""
 import random
 
 
 def clustering(distances, k):
+    """
+        Calcula el clustering de los paises pasados como parámetros.
+        Aplica el algoritmo de k-medoids.
+
+        :param distances: Diccionario sobre el que se quieren calcular los clusters.
+        :type distances: dict
+        :param k: Número de clusters a calcular.
+        :type k: int
+        :return: Devulve un diccionario que contiene los clusters en forma de pais-lista.
+    """
     countries = list(distances.keys())
     centers = random.sample(countries, k)
     last_centers = list()
     clusters = dict()
-    while (centers!=last_centers):
+    while centers != last_centers:
         clusters = dict()
         for center in centers:
             clusters[center] = dict()
-            clusters[center]["Cluster"]=list()
+            clusters[center]["Cluster"] = list()
         for country in countries:
             center = get_center(country, centers, distances)
             cluster_list = clusters[center]["Cluster"]
@@ -30,6 +43,15 @@ def clustering(distances, k):
 
 
 def new_centers(sum_distances, clusters):
+    """
+        Calcula los nuevos centros de cada vuelta del clustering.
+
+        :param sum_distances: Diccionario que contiene listas de sumas asociadas a cada país.
+        :type sum_distances: dict
+        :param clusters: Disccionario que contiene los clusters de la vuelta altual.
+        :type clusters: dict
+        :return: Devulve una lista con los nuevos centros.
+    """
     centers = list()
     for center in list(sum_distances.keys()):
         mini = sum_distances[center].index(min(sum_distances[center]))
@@ -38,6 +60,17 @@ def new_centers(sum_distances, clusters):
 
 
 def get_center(country, centers, distances):
+    """
+        Calcula el pais de la lista centers con menos distancia al pais contry.
+
+        :param country: Pais sobre el que se calculará el centro.
+        :type country: str
+        :param centers: Lista que contiene los centros.
+        :type centers: list
+        :param distances: Diccionario que contiene las distancias entre paises.
+        :type distances: dict
+        :return: Devuleve el pais de la lista de centros mas cercano a country.
+    """
     distances_of_center = list()
     for center in centers:
         distances_of_center.append(distances[center][country])
