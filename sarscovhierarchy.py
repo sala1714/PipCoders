@@ -5,9 +5,7 @@
     module3: Importa las funciones referentes a la tercera parte de la práctica ()
 """
 import pandas as pd
-import module1 as m1
-import module2 as m2
-import module3 as m3
+from Modules import module1 as m1, module2 as m2, module3 as m3
 
 
 def main():

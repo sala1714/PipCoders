@@ -53,9 +53,9 @@ def new_centers(sum_distances, clusters):
 
         :param sum_distances: Diccionario que contiene listas de sumas asociadas a cada país.
         :type sum_distances: dict
-        :param clusters: Disccionario que contiene los clusters de la vuelta altual.
+        :param clusters: Diccionario que contiene los clusters de la vuelta actual.
         :type clusters: dict
-        :return: Devulve una lista con los nuevos centros.
+        :return: Devuelve una lista con los nuevos centros.
     """
     centers = list()
     for center in list(sum_distances.keys()):

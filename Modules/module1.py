@@ -37,7 +37,7 @@ def select_accessions():
 
 def median(values, middle_position):
     """
-        Devuelve la longituda mediana de entre todas las muestras.
+        Devuelve la longitud mediana de entre todas las muestras.
         :param values: Lista con las longitudes de las distintas muestras asociadas a cada país.
         :type values: list
         :param middle_position: Representa la posición media de la lista.

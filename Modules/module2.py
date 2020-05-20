@@ -47,7 +47,8 @@ def download_fasta(accession):
 
 def create_dictionary(dictionary):
     """
-        Crea un diccionario con los datos de aligmentes desde un diccionario que contiene los FASTA.
+        Crea un diccionario con los datos de aligmentes desde un diccionario que contiene los FASTA usando la biblioteca
+        de Needlman-Wunsch programada por nosotros en Rust.
 
         :param dictionary: Diccionario que contiene las muestras fasta.
         :type dictionary: dict

@@ -1,5 +1,5 @@
 from unittest import TestCase
-from module1 import median
+from Modules.module1 import median
 
 
 class Test(TestCase):
