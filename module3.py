@@ -4,7 +4,7 @@
 import random
 
 
-def clustering(distances, k):
+def clustering(distances, k, defined_centers=()):
     """
         Calcula el clustering de los paises pasados como parámetros.
         Aplica el algoritmo de k-medoids.
@@ -13,10 +13,15 @@ def clustering(distances, k):
         :type distances: dict
         :param k: Número de clusters a calcular.
         :type k: int
+        :param defined_centers: Contiene los primeros centros sobre los que se ejecuta el clustering.
+        :type defined_centers: tuple
         :return: Devulve un diccionario que contiene los clusters en forma de pais-lista.
     """
     countries = list(distances.keys())
-    centers = random.sample(countries, k)
+    if not defined_centers:
+        centers = random.sample(countries, k)
+    else:
+        centers = list(defined_centers)
     last_centers = list()
     clusters = dict()
     while centers != last_centers:

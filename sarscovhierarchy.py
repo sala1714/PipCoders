@@ -19,7 +19,7 @@ def main():
     print("\tEjecución Tipo 2 - External Execution:\n"
           "\t\t- Genera nuevos datos alignments maximum scores al ejecutar el algoritmo needleman_wunsch.\n")
     selection = input("¿Quieres ejecutar 1 o 2?\n")
-    k = int(input("¿Cuántos clusters quieres generar?"))
+    k = int(input("¿Cuántos clusters quieres generar?\n"))
     if "1" in selection:
         local_execution(k)
     else:
