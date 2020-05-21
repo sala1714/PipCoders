@@ -13,7 +13,8 @@ def main():
     print("¿Que tipo de ejecución deseas hacer?\n")
     print("\tEjecución Tipo 1 - Local Execution:\n"
           "\t\t- Carga desde el archivo alignmets.csv el resultado si se hubiera ejecutado el needleman_wunsch.\n"
-          "\t\tDamos esta opción para ahorrar tiempo\n")
+          "\t\tDamos esta opción para ahorrar tiempo\n"
+          "\t\tSi se modifica el archivo sequences.csv NO se debe ejecutar esta opción.\n")
     print("\tEjecución Tipo 2 - External Execution:\n"
           "\t\t- Genera nuevos datos alignments maximum scores al ejecutar el algoritmo needleman_wunsch.\n")
     selection = input("¿Quieres ejecutar 1 o 2?\n")
