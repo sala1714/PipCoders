@@ -11,10 +11,8 @@ Para que nuestro programa funcione correctamente es necesario tener instalados l
 *requeriments.txt*.
 
 ### Tests
-Para ejecutar los tests de los módulos 1 y 3 (*Python*) hay que posicionarse en el directorio del proyecto y ejecutar 
+Para ejecutar los tests de los módulos 1, 2 y 3 hay que posicionarse en el directorio del proyecto y ejecutar 
 el comando *python -m unittest* .
-
-Para ejecutar los tests del módulo 2 (*Rust*) hay que
 
 ### Ejecución
 Para ejecutar el programa hay que ejecutar el fichero *sarscovhierarchy.py* .
