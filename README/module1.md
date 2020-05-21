@@ -22,7 +22,7 @@ Los costes teóricos de ejecución de la función seran:
 
 |Peor de los casos  |Caso medio         |Mejor de los casos |
 |-------------------|-------------------|-------------------|
-|O(n<sup>2</sup>)			|   O(n·log(n))     |O(n·log(n))        |
+|O(n<sup>2</sup>)	|   O(n)            |O(n)               |
 
 Los costes experimentales de ejecución de la función seran:
 
