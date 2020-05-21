@@ -14,7 +14,7 @@ de *clusters*):
 
 |Caso medio         |
 |-------------------|
-|O(k·(n - k<sup>2</sup>))| 
+|O(k·(n - k)<sup>2</sup>)| 
 
 Los costes experimentales de ejecución de la función son de esta forma:
 
