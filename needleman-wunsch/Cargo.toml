@@ -1,0 +1,13 @@
+[package]
+name = "needleman-wunsch"
+version = "0.1.0"
+authors = ["ilyassm00 <64154465+ilyassm00@users.noreply.github.com>"]
+edition = "2018"
+
+[lib]
+name = "needleman_wunsch"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.10.1"
+features = ["extension-module"]
