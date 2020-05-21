@@ -1,5 +1,5 @@
 from unittest import TestCase
-from Modules.module3 import clustering
+from modules.module3 import clustering
 
 
 class Test(TestCase):

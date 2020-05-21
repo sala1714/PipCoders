@@ -20,17 +20,18 @@ desde la web del NCBI. Devuelve la ruta dónde se ha almacenado el archivo FASTA
 Esta función crea un diccionario con los datos de *alignments* a partir de un diccionario que contiene los FASTA usando 
 la biblioteca de *Needlman-Wunsch* programada por nosotros en Rust.
 
-Los costes teóricos de ejecución de la función seran:
+La complejidad computacional de esta función será (siendo n y m el nñumero de países con muestra):
 
 |Caso medio         |
 |-------------------|
-|O(n·m)			| 
+|O(n·m)			    | 
 
-Los costes experimentales de ejecución de la función seran:
+Los costes experimentales de ejecución de la función son de esta forma:
 
-|Peor de los casos  |Caso medio         |Mejor de los casos |
-|-------------------|-------------------|-------------------|
-|O( )			|   O( )     |O( )        |
+![Coste módulo 2](../functions-cost/cost-module2.png)
+
+Como podemos ver se trata de una función cuadrática, cosa lógica debido a que el coste teórico de esta función en el caso 
+medio es O(n·m) o O(n<sup>2</sup>) si n y m són iguales.
 
 ##Función load_alignments()
 Esta función recibe como parámetro una lista de países presentes en el diccionario *result* y crea un diccionario con

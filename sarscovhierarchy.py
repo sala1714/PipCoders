@@ -5,11 +5,11 @@
     module3: Importa las funciones referentes a la tercera parte de la práctica ()
 """
 import pandas as pd
-from Modules import module1 as m1, module2 as m2, module3 as m3
+from modules import module1 as m1, module2 as m2, module3 as m3
 
 
 def main():
-    print("CSV de muestras \"sequences.csv\" actualizado a día /05/2020.\n")
+    print("CSV de muestras \"sequences.csv\" actualizado a día 04/05/2020.\n")
     print("¿Que tipo de ejecución deseas hacer?\n")
     print("\tEjecución Tipo 1 - Local Execution:\n"
           "\t\t- Carga desde el archivo alignmets.csv el resultado si se hubiera ejecutado el needleman_wunsch.\n"
@@ -38,8 +38,8 @@ def local_execution(k):
     distances_dictionary = m2.distances(alignment_scores_dictionary)
     # Clustering process.
     clusters = m3.clustering(distances_dictionary, k)
+    print(pd.DataFrame(clusters).T, end="\n\n")
     print(clusters)
-    print(pd.DataFrame(clusters).T)
 
 
 def external_execution(k):
@@ -55,8 +55,8 @@ def external_execution(k):
     distances_dictionary = m2.distances(alignment_scores_dictionary)
     # Clustering process.
     clusters = m3.clustering(distances_dictionary, k)
+    print(pd.DataFrame(clusters).T, end="\n\n")
     print(clusters)
-    print(pd.DataFrame(clusters).T)
 
 
 if __name__ == '__main__':
