@@ -41,6 +41,7 @@ def download_fasta(accession):
     """
     url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
     path = './data/FASTA_files/' + accession + '.fasta'
+    print("Descargando accession "+accession)
     urllib.request.urlretrieve(url, path)
     return path
 
