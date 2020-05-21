@@ -18,7 +18,7 @@ de *clusters*):
 
 Los costes experimentales de ejecución de la función son de esta forma:
 
-![Coste módulo 3](../functions-cost/cost-module3.png)
+![Coste módulo 3](../functions-cost-images/cost-module3.png)
 
 Como podemos ver se trata de una función indefinidia, cosa lógica debido a que el coste teórico de esta función en el caso 
 medio es O(k·(n - k<sup>2</sup>)).
