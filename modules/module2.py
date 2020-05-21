@@ -41,8 +41,9 @@ def download_fasta(accession):
     """
     url = 'http://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&rettype=fasta&id=' + accession
     path = './data/FASTA_files/' + accession + '.fasta'
-    print("Descargando accession "+accession)
+    print("Descargando accession "+accession+".")
     urllib.request.urlretrieve(url, path)
+    print("Accession " + accession + " descargado con exito.")
     return path
 
 
@@ -55,6 +56,7 @@ def create_dictionary(dictionary):
         :type dictionary: dict
         :return: Diccionario que contiene los datos de aligment.
     """
+    print("Ejecutando algorítmo needleman-wunsch (Puede tardar unos 20 minutos).")
     result = dict()
     countries = list(dictionary.keys())
     for country in countries:
@@ -70,6 +72,7 @@ def create_dictionary(dictionary):
 
             else:
                 result[country].update({country2: len(country_a)})
+    print("Algorítmo needleman-wunsch ejecutado con exito.")
     return result
 
 
