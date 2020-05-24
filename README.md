@@ -13,6 +13,7 @@ La documentación de este proyecto está repartida en 4 ficheros *MarkDown* ([Sa
 [Module 2](documentation/module2.md) y [Module 3](documentation/module3.md)), uno por cada fichero de código. 
 Aún así, dentro de los ficheros python, también encontramos un comentario por cada función.
 
+
 ### Requerimientos
 Para que nuestro programa funcione correctamente es necesario tener instalados los requerimientos del fichero
 [*requeriments.txt*](requirements.txt).
@@ -22,7 +23,8 @@ Para ejecutar los tests de los módulos 1, 2 y 3 hay que posicionarse en el dire
 el comando *python -m unittest* .
 
 ### Ejecución
-Para ejecutar el programa hay que ejecutar el fichero [*sarscovhierarchy.py*](sarscovhierarchy.py) .
+Para ejecutar el programa hay que ejecutar el fichero [*sarscovhierarchy.py*](sarscovhierarchy.py) usando la versión de 
+Python de 64 bits con el comando pertinente a su versión (python o python3).
 
 ### Multiplataforma
 Para que se pueda ejecutar el programa tanto en Linux como en Windows hemos añadido el módulo *needleman_wunsch* 

@@ -29,6 +29,6 @@ que contiene los *clusters* de la vuelta actual. Con estos datos calcula los nue
 y devuelve una lista que los contiene.
   
 ## Función get_center()
-Esta función recibe como parámetros el país sobre el que se calcularà el centro, una lista que contiene los centros del 
-*clustering* y un diccionario que contiene las distancias entre países. Con estos datos calcula el pais de la lista 
-*centers* con menos distancia al pais *country*.
+Esta función recibe como parámetros el país sobre el que se calculará el centro, una lista que contiene los centros del 
+*clustering* y un diccionario que contiene las distancias entre países. Con estos datos calcula el país de la lista 
+*centers* con menos distancia al país *country*.

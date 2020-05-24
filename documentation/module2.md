@@ -6,7 +6,7 @@ Cabe destacar que, en este módulo, usamos las siguientes bibliotecas:
 - *Urllib* para descargar los archivos FASTA desde la web.
 - *Glob* para listar el directorio de archivos FASTA.
 - *Bio* para localizar el RNA de la muestra dentro de un archivo FASTA.
-- *Needleman_wunsch* para importar el codigo del algoritmo que calcula los aligment en lenguaje *Rust*.
+- *Needleman_wunsch* para importar el código del algoritmo que calcula los *alignment* en lenguaje *Rust*.
 
 ##Función fasta_rna()
 Esta función recibe como parámetro un diccionario que contiene los países a rellenar con su muestra FASTA
@@ -20,7 +20,7 @@ desde la web del NCBI. Devuelve la ruta dónde se ha almacenado el archivo FASTA
 Esta función crea un diccionario con los datos de *alignments* a partir de un diccionario que contiene los FASTA usando 
 la biblioteca de *Needlman-Wunsch* programada por nosotros en Rust.
 
-La complejidad computacional de esta función será (siendo n y m el nÚmero de países con muestra):
+La complejidad computacional de esta función será (siendo n y m el número de países con muestra):
 
 |Caso medio         |
 |-------------------|
