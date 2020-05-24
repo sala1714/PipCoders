@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
     pandas: Biblioteca que nos sirve para imprimir diccionarios en forma de tabla.
     module1: Importa las funciones referentes a la primera parte de la práctica (Accessions)

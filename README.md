@@ -24,7 +24,9 @@ el comando *python -m unittest* .
 
 ### Ejecución
 Para ejecutar el programa hay que ejecutar el fichero [*sarscovhierarchy.py*](sarscovhierarchy.py) usando la versión de 
-Python de 64 bits con el comando pertinente a su versión (python o python3).
+Python de 64 bits con el comando pertinente a su versión (python o python3). Hemos intentado implementar la ejecución 
+mediante ./sarscovhierarchy.py, pero al trabajar todos con ordenadores Windows y correr Linux en una máquina virtual no 
+sabemos si puede funcionar en otros entornos.
 
 ### Multiplataforma
 Para que se pueda ejecutar el programa tanto en Linux como en Windows hemos añadido el módulo *needleman_wunsch* 
