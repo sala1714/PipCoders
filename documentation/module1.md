@@ -26,7 +26,7 @@ La complejidad computacional de esta función será:
 
 Los costes experimentales de ejecución de la función son de esta forma:
 
-![Coste módulo 1](../functions-cost-images/cost-module1.png)
+![Coste módulo 1](../data/functions-cost-images/cost-module1.png)
 
 Como podemos ver se trata de una función lineal, cosa lógica debido a que el coste teórico de esta función en el caso 
 medio es O(n). 

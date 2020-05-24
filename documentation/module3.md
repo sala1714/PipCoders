@@ -1,12 +1,12 @@
 # Documentación Module 3
 A continuación vamos a explicar el funcionamiento de las distintas funciones del fichero *module3.py* .
 
-Cabe destacar que, en este módulo, importamos la librería *random* para calcular los primeros centros de manera aleatoria.
+Cabe destacar que, en este módulo, importamos la biblioteca *random* para calcular los primeros centros de manera aleatoria.
 
 ## Función clustering()
 Esta función recibe como parámetros un diccionario sobre el que se quieren calcular los *clusters*, el número de *clusters*
 a calcular y una tupla que contiene los primeros centros sobre los que se ejecuta el clustering (esta última variable se
-utiliza para los tests). Con estos datos, aplicando el algortimo de *k-medoids*, calcula el *clustering* de los países
+utiliza para los tests). Con estos datos, aplicando el algoritmo de *k-medoids*, calcula el *clustering* de los países
 pasados como parámetros. 
 
 La complejidad computacional de esta función será (siendo n el número de elementos a hacer el *clustering* y k el número 
@@ -18,7 +18,7 @@ de *clusters*):
 
 Los costes experimentales de ejecución de la función son de esta forma:
 
-![Coste módulo 3](../functions-cost-images/cost-module3.png)
+![Coste módulo 3](../data/functions-cost-images/cost-module3.png)
 
 Como podemos ver se trata de un dibujo lógico debido a que se parece al dibujo de la función de coste teórico
 que es O(k·(n - k)<sup>2</sup>).
