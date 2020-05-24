@@ -18,7 +18,7 @@ de *clusters*):
 
 Los costes experimentales de ejecución de la función son de esta forma:
 
-![Coste módulo 3](../functions-cost-images/cost-modul3.png)
+![Coste módulo 3](../functions-cost-images/cost-module3.png)
 
 Como podemos ver se trata de un dibujo lógico debido a que se parece al dibujo de la función de coste teórico
 que es O(k·(n - k)<sup>2</sup>).
