@@ -66,7 +66,7 @@ def new_centers(sum_distances, clusters):
 
 def get_center(country, centers, distances):
     """
-        Calcula el pais de la lista centers con menos distancia al pais contry.
+        Calcula el pais de la lista centers con menos distancia al pais country.
 
         :param country: Pais sobre el que se calculará el centro.
         :type country: str
